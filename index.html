@@ -451,7 +451,7 @@
 
         @media (max-width: 768px) {
             .swipe-indicator {
-                display: block;
+                display: block !important;
             }
         }
 
@@ -1111,10 +1111,12 @@
 
     <!-- ─── MENU SECTION ─── -->
     <section class="section" id="menuSection">
-        <div class="swipe-indicator">
+
+        <!-- TABS -->
+        <div class="swipe-indicator"
+            style="margin-bottom: 8px; font-size: 0.8rem; animation: blinker 1.5s linear infinite;">
             ⟵ Swipe Categories ⟶
         </div>
-        <!-- TABS -->
         <div class="tab-bar">
             <button class="tab-btn active" onclick="filterMenu('all', this)">All Items</button>
             <button class="tab-btn" onclick="filterMenu('cocktail', this)">Cocktails</button>
