@@ -430,13 +430,38 @@
             border: 1px solid var(--border);
         }
 
+        /* ──────────── SWIPE INDICATOR ──────────── */
+        .swipe-indicator {
+            display: none;
+            text-align: center;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: blinker 1.5s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .swipe-indicator {
+                display: block;
+            }
+        }
+
         /* ──────────── CATEGORY TABS ──────────── */
         .tab-bar {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
-            /* Removed bottom margin since it was moved to container */
+            margin-bottom: 40px;
         }
 
         .tab-btn {
@@ -1086,25 +1111,18 @@
 
     <!-- ─── MENU SECTION ─── -->
     <section class="section" id="menuSection">
+        <div class="swipe-indicator">
+            ⟵ Swipe Categories ⟶
+        </div>
         <!-- TABS -->
-        <div class="tab-container" style="position: relative; margin-bottom: 40px;">
-            <div class="tab-fade-left"
-                style="display: none; position: absolute; left: 0; top: 0; bottom: 0; width: 30px; background: linear-gradient(to right, var(--bg-dark), transparent); pointer-events: none; z-index: 2;">
-            </div>
-            <div class="tab-fade-right"
-                style="display: none; position: absolute; right: 0; top: 0; bottom: 0; width: 30px; background: linear-gradient(to left, var(--bg-dark), transparent); pointer-events: none; z-index: 2; align-items: center; justify-content: flex-end; color: var(--gold); padding-right: 5px; opacity: 0.8;">
-                <span style="font-size: 1.2rem; margin-top: -8px;">›</span>
-            </div>
-
-            <div class="tab-bar" id="categoryTabs" onscroll="updateTabScroll()">
-                <button class="tab-btn active" onclick="filterMenu('all', this)">All Items</button>
-                <button class="tab-btn" onclick="filterMenu('cocktail', this)">Cocktails</button>
-                <button class="tab-btn" onclick="filterMenu('mocktail', this)">Mocktails</button>
-                <button class="tab-btn" onclick="filterMenu('wine', this)">Wines & Spirits</button>
-                <button class="tab-btn" onclick="filterMenu('coffee', this)">Coffee & Tea</button>
-                <button class="tab-btn" onclick="filterMenu('juice', this)">Fresh Juices</button>
-                <button class="tab-btn" onclick="filterMenu('food', this)">Food</button>
-            </div>
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="filterMenu('all', this)">All Items</button>
+            <button class="tab-btn" onclick="filterMenu('cocktail', this)">Cocktails</button>
+            <button class="tab-btn" onclick="filterMenu('mocktail', this)">Mocktails</button>
+            <button class="tab-btn" onclick="filterMenu('wine', this)">Wines & Spirits</button>
+            <button class="tab-btn" onclick="filterMenu('coffee', this)">Coffee & Tea</button>
+            <button class="tab-btn" onclick="filterMenu('juice', this)">Fresh Juices</button>
+            <button class="tab-btn" onclick="filterMenu('food', this)">Food</button>
         </div>
 
 
@@ -1810,30 +1828,6 @@
                 if (btn) filterMenu(cat, btn);
             }, 400);
         }
-
-        // ── Tab scroll indicators
-        function updateTabScroll() {
-            const tabs = document.getElementById('categoryTabs');
-            const fadeLeft = document.querySelector('.tab-fade-left');
-            const fadeRight = document.querySelector('.tab-fade-right');
-
-            if (tabs.scrollWidth > tabs.clientWidth) {
-                // Show/hide left arrow depending on scroll position
-                fadeLeft.style.display = tabs.scrollLeft > 5 ? 'flex' : 'none';
-
-                // Show/hide right arrow depending on scroll position
-                // Use absolute difference to account for fractional pixel rounding on some screens
-                const isAtEnd = Math.abs(tabs.scrollWidth - tabs.scrollLeft - tabs.clientWidth) < 2;
-                fadeRight.style.display = !isAtEnd ? 'flex' : 'none';
-            } else {
-                fadeLeft.style.display = 'none';
-                fadeRight.style.display = 'none';
-            }
-        }
-
-        // Initialize scroll indicators on layout load or resize
-        window.addEventListener('load', updateTabScroll);
-        window.addEventListener('resize', updateTabScroll);
 
         let totalBill = 0;
         let selectedItemsCount = 0;
