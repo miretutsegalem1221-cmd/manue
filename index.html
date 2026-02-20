@@ -962,12 +962,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transform: translateY(-100%);
-            transition: transform 0.35s ease;
-        }
-
-        .sticky-header.visible {
-            transform: translateY(0);
         }
 
         .sh-name {
@@ -1783,12 +1777,10 @@
 
     <script>
         // ── Sticky header on scroll
-        const header = document.getElementById('stickyHeader');
         const scrollBtn = document.getElementById('scrollToTopBtn');
 
         window.addEventListener('scroll', () => {
             const scrollPos = window.scrollY;
-            header.classList.toggle('visible', scrollPos > 400);
 
             // Show/hide scroll to top button
             if (scrollPos > 500) {
