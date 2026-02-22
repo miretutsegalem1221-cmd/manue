@@ -62,22 +62,7 @@
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80') center/cover no-repeat;
-            opacity: 0.18;
-        }
-
-        /* Animated gold particles */
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 0%, rgba(200, 168, 75, 0.12) 0%, transparent 70%);
-        }
+        /* Removed pseudo-elements to clean up background */
 
         .hero-content {
             position: relative;
@@ -213,22 +198,27 @@
         .scroll-cta {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--gold);
-            font-size: 0.9rem;
+            gap: 12px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 1rem;
+            font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
             text-decoration: none;
-            border: 1px solid var(--border);
-            padding: 10px 28px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
+            padding: 14px 40px;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: none;
         }
 
         .scroll-cta:hover {
-            background: var(--gold);
+            background: var(--white);
             color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .scroll-arrow {
@@ -946,6 +936,21 @@
             .section {
                 padding: 40px 16px;
             }
+
+            .order-summary-bar {
+                bottom: 60px;
+                padding: 10px 15px;
+            }
+
+            .add-to-order-btn {
+                position: relative;
+                z-index: 10;
+                display: block;
+                width: 100%;
+                margin-top: 10px;
+                padding: 10px;
+                text-align: center;
+            }
         }
 
         /* ──────────── STICKY HEADER ──────────── */
@@ -1064,24 +1069,17 @@
 <body>
 
     <!-- ─── STICKY HEADER ─── -->
-    <header class="sticky-header" id="stickyHeader">
-        <div style="display: flex; align-items: center; gap: 20px;">
-            <div class="custom-logo" style="transform: scale(0.45); transform-origin: left center;">
-                <div class="part-top">Swiss Inn</div>
-                <div class="part-line"></div>
-                <div class="part-bottom">Nexus Hotel Addis Ababa</div>
-            </div>
-            <div>
-                <div class="sh-name">Swiss Inn Nexus Hotel</div>
-                <div class="sh-lobby">🍸 Lobby Bar Menu</div>
-            </div>
+    <header class="sticky-header" id="stickyHeader" style="justify-content: center;">
+        <div class="custom-logo" style="transform: scale(1.1); transform-origin: center;">
+            <div class="part-top">Swiss Inn</div>
+            <div class="part-line"></div>
+            <div class="part-bottom">Nexus Hotel Addis Ababa</div>
         </div>
-        <div class="sh-crest">🏨</div>
     </header>
 
     <!-- ─── HERO ─── -->
     <section class="hero"
-        style="background: linear-gradient(rgba(13,27,42,0.8), rgba(13,27,42,0.8)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80') center/cover no-repeat;">
+        style="background: linear-gradient(rgba(13,27,42,0.6), rgba(13,27,42,0.6)), url('OIP.jfif') center/cover no-repeat;">
         <div class="hero-content">
             <div class="logo-wrap" style="transform: scale(1.1);">
                 <div class="custom-logo">
@@ -1090,11 +1088,14 @@
                     <div class="part-bottom">Nexus Hotel Addis Ababa</div>
                 </div>
             </div>
-            <div class="hero-badge" style="margin-top: 30px;">🍸 Lobby Bar Menu</div>
-            <p class="hero-sub" style="color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Experience the finest
-                flavors at our exclusive Lobby Bar — carefully crafted drinks and
-                gourmet bites served in an atmosphere of timeless elegance.</p>
-            <a class="scroll-cta" onclick="document.getElementById('menuSection').scrollIntoView({behavior:'smooth'})">
+            <div class="hero-badge"
+                style="margin-top: 30px; font-size: clamp(0.9rem, 2.5vw, 1.3rem); padding: 12px 24px; text-transform: uppercase;">
+                WELCOME TO SWISS INN NEXUS HOTEL ADDIS ABABA</div>
+            <p class="hero-sub"
+                style="color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); font-size: clamp(0.9rem, 2.5vw, 1.2rem);">
+                if you or any your guest have an allergy or dietary restriction, please inform your waiting staff & our
+                chefs will be happy to accommodate your needs.</p>
+            <a class="scroll-cta" onclick="scrollToMenu()">
                 Explore Menu <span class="scroll-arrow">↓</span>
             </a>
         </div>
@@ -1741,8 +1742,8 @@
         </div>
 
         <div class="footer-bottom">
-            © 2025 Swiss Inn Nexus Hotel. All rights reserved. &nbsp;|&nbsp; All prices in Ethiopian Birr (ETB)
-            &nbsp;|&nbsp; VAT & Service Charge Included
+            &copy; 2025 Swiss Inn Nexus Hotel. All rights reserved. &nbsp;|&nbsp; All prices in Ethiopian Birr (ETB)
+            &nbsp;|&nbsp; VAT 15% & 10% Service Charge Included
         </div>
     </footer>
 
@@ -1800,6 +1801,18 @@
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ── Custom scroll function for sticky header offset
+        function scrollToMenu() {
+            const menuSection = document.getElementById('menuSection');
+            const headerHeight = document.getElementById('stickyHeader').offsetHeight || 80;
+            const targetPos = menuSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+            window.scrollTo({
+                top: targetPos,
+                behavior: 'smooth'
+            });
+        }
 
         // ── Menu filter
         function filterMenu(cat, btn) {
@@ -1861,13 +1874,18 @@
             const detailsList = document.getElementById('orderDetailsList');
             const toggleBtn = document.getElementById('toggleDetailsBtn');
 
-            amountEl.textContent = `ETB ${totalBill}`;
+            // Taxes
+            const vat = totalBill * 0.15;
+            const serviceCharge = totalBill * 0.10;
+            const finalTotal = totalBill + vat + serviceCharge;
+
+            amountEl.innerHTML = `ETB ${finalTotal.toFixed(2)}<br><span style="font-size: 0.5em; font-weight: normal; font-family: 'Inter', sans-serif;">Included: VAT (15%): ETB ${vat.toFixed(2)} | Service (10%): ETB ${serviceCharge.toFixed(2)}</span>`;
             countEl.textContent = `${selectedItemsCount} Item${selectedItemsCount !== 1 ? 's' : ''}`;
 
-            if (selectedItemsCount >= 2) {
+            if (selectedItemsCount >= 1) {
                 toggleBtn.style.display = 'inline-block';
                 // Populate details list
-                detailsList.innerHTML = orderItems.map((item, index) => `
+                let itemsHtml = orderItems.map((item, index) => `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 0.9rem;">
                         <span>${index + 1}. ${item.name}</span>
                         <div style="display: flex; align-items: center; gap: 10px;">
@@ -1876,6 +1894,17 @@
                         </div>
                     </div>
                 `).join('');
+
+                itemsHtml += `
+                    <div style="margin-top: 15px; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #ccc;"><span>Subtotal:</span> <span>ETB ${totalBill.toFixed(2)}</span></div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #ccc;"><span>VAT (15%):</span> <span>ETB ${vat.toFixed(2)}</span></div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #ccc;"><span>Service Charge (10%):</span> <span>ETB ${serviceCharge.toFixed(2)}</span></div>
+                        <div style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 5px; color: var(--gold);"><span>Total:</span> <span>ETB ${finalTotal.toFixed(2)}</span></div>
+                    </div>
+                `;
+
+                detailsList.innerHTML = itemsHtml;
             } else {
                 toggleBtn.style.display = 'none';
                 detailsList.style.display = 'none';
@@ -1921,9 +1950,28 @@
             document.getElementById('orderBar').classList.remove('active');
         }
 
+        // ── Move Add to Bill button for mobile layout
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.menu-card').forEach(card => {
+                const origBtn = card.querySelector('.add-to-order-btn');
+                const cardBody = card.querySelector('.card-body');
+                if (origBtn && cardBody) {
+                    const clonedBtn = origBtn.cloneNode(true);
+                    clonedBtn.classList.add('mobile-visible-btn');
+                    cardBody.appendChild(clonedBtn);
+                }
+            });
+        });
+
         // ── Add keyframe animation dynamically
         const style = document.createElement('style');
-        style.textContent = `@keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }`;
+        style.textContent = `@keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        /* Make cloned buttons visible only on mobile */
+        .mobile-visible-btn { display: none; width: 100%; margin-top: 15px; }
+        @media (max-width: 768px) {
+            .mobile-visible-btn { display: block !important; }
+            .brief-def-overlay .add-to-order-btn { display: none !important; }
+        }`;
         document.head.appendChild(style);
     </script>
 </body>
