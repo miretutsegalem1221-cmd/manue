@@ -343,12 +343,10 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            /* Fixed: No movement */
         }
 
-        .menu-card:hover .card-img-wrap img {
-            transform: scale(1.08);
-        }
+
 
         .card-badge {
             position: absolute;
@@ -373,6 +371,8 @@
         .card-body {
             padding: 20px;
         }
+
+
 
         .card-name {
             font-family: 'Playfair Display', serif;
@@ -426,8 +426,8 @@
             text-align: center;
             color: var(--gold);
             font-weight: bold;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+            font-size: 0.9rem;
+            margin: 10px auto 20px;
             letter-spacing: 2px;
             text-transform: uppercase;
             animation: blinker 1.5s linear infinite;
@@ -444,6 +444,7 @@
                 display: block !important;
             }
         }
+
 
         /* ──────────── CATEGORY TABS ──────────── */
         .tab-bar {
@@ -722,65 +723,7 @@
             transform: scale(1.05);
         }
 
-        /* ──────────── BRIEF DEFINITION OVERLAY ──────────── */
-        .card-img-wrap {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-            cursor: pointer;
-        }
 
-        .brief-def-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            z-index: 5;
-            backdrop-filter: blur(5px);
-        }
-
-        .brief-def-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .def-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: var(--gold-dark);
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .def-body {
-            font-size: 0.85rem;
-            color: var(--text-dark);
-            line-height: 1.4;
-        }
-
-        .click-hint {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            width: 100%;
-            font-size: 0.65rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            opacity: 0.7;
-        }
 
         /* ──────────── SCROLL TO TOP ──────────── */
         .scroll-to-top {
@@ -1147,8 +1090,7 @@
     <section class="section" id="menuSection">
 
         <!-- TABS -->
-        <div class="swipe-indicator"
-            style="margin-bottom: 8px; font-size: 0.8rem; animation: blinker 1.5s linear infinite;">
+        <div class="swipe-indicator">
             ⟵ Swipe Categories ⟶
         </div>
         <div class="tab-bar">
@@ -1165,100 +1107,75 @@
         <!-- MENU GRID -->
         <div class="menu-grid" id="menuGrid">
 
-            <!-- COCKTAILS -->
-            <div class="menu-card fade-in" data-cat="cocktail">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
-                    <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=500&q=80"
-                        alt="Classic Mojito" loading="lazy" />
+            <!-- EGG DISHES -->
+            <div class="menu-card fade-in" data-cat="food">
+                <div class="card-img-wrap">
+                    <img src="Capture.PNG" alt="Spanish Omelet" loading="lazy" />
                     <div class="card-img-overlay"></div>
-                    <div class="card-badge">Cocktail</div>
-
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🍹 Brief Definition</div>
-                        <p class="def-body">Premium white rum, fresh garden mint, zesty lime, and sparkling soda. A
-                            crisp, refreshing hotel classic.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('480', this); event.stopPropagation();">Add
-                            to Bill - ETB 480</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
+                    <div class="card-badge">Breakfast</div>
                 </div>
-                <div class="card-body">
-                    <div class="card-name">Classic Mojito</div>
-                    <p class="card-desc">White rum, fresh mint, lime juice, cane sugar, sparkling soda water.
-                        Refreshingly cool.</p>
+                <div class="card-body" style="padding-top: 0;">
+                    <div style="padding: 0;">
+                        <img src="1.PNG" alt="Menu Detail"
+                            style="width: 100%; display: block; border: none; margin-bottom: 12px;" />
+                    </div>
+                    <div class="card-name" style="margin-top: 10px;">Spanish Omelet</div>
                     <div class="card-footer">
-                        <div class="card-price">ETB 480<span>Per Glass</span></div>
-                        <span class="card-tag">🍃 Refreshing</span>
+                        <div class="card-price">ETB 390<span>Per Serving</span></div>
+                        <button class="add-to-order-btn" onclick="addToOrder('390', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="cocktail">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=500&q=80" alt="Whiskey Sour"
                         loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Cocktail</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🥃 Brief Definition</div>
-                        <p class="def-body">Aged bourbon, fresh lemon, simple syrup, and silken foam. Smooth, tart, and
-                            timelessly bold.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('560', this); event.stopPropagation();">Add
-                            to Bill - ETB 560</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="card-name">Whiskey Sour</div>
-                    <p class="card-desc">Bourbon whiskey, fresh lemon juice, simple syrup, and egg white foam. A
-                        timeless classic.</p>
+                <div class="card-body" style="padding-top: 0;">
+                    <div style="padding: 0;">
+                        <img src="1.PNG" alt="Menu Detail"
+                            style="width: 100%; display: block; border: none; margin-bottom: 12px;" />
+                    </div>
+                    <div class="card-name" style="margin-top: 10px;">Whiskey Sour</div>
                     <div class="card-footer">
                         <div class="card-price">ETB 560<span>Per Glass</span></div>
-                        <span class="card-tag">🥃 Bold</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('560', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="cocktail">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1597290282695-edc43d0e7129?w=500&q=80"
                         alt="Cosmopolitan" loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Cocktail</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🍒 Brief Definition</div>
-                        <p class="def-body">Vodka, cranberry juice, and triple sec with a splash of lime. Vibrant,
-                            elegant, and perfectly balanced.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('520', this); event.stopPropagation();">Add
-                            to Bill - ETB 520</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="card-name">Cosmopolitan</div>
-                    <p class="card-desc">Vodka, triple sec, cranberry juice, fresh lime — shaken to perfection. Elegant
-                        & vibrant.</p>
+                <div class="card-body" style="padding-top: 0;">
+                    <div style="padding: 0;">
+                        <img src="1.PNG" alt="Menu Detail"
+                            style="width: 100%; display: block; border: none; margin-bottom: 12px;" />
+                    </div>
+                    <div class="card-name" style="margin-top: 10px;">Cosmopolitan</div>
                     <div class="card-footer">
                         <div class="card-price">ETB 520<span>Per Glass</span></div>
-                        <span class="card-tag">🍒 Fruity</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('520', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="cocktail">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1560508180-03f285f67ded?w=500&q=80" alt="Piña Colada"
                         loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Cocktail</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🍍 Brief Definition</div>
-                        <p class="def-body">White rum, coconut cream, and fresh pineapple juice. A smooth, icy escape to
-                            tropical bliss.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('500', this); event.stopPropagation();">Add
-                            to Bill - ETB 500</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Piña Colada</div>
@@ -1266,52 +1183,39 @@
                         Tropical bliss.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 500<span>Per Glass</span></div>
-                        <span class="card-tag">🍍 Tropical</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('500', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <!-- MOCKTAILS -->
             <div class="menu-card fade-in" data-cat="mocktail">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=500&q=80" alt="Virgin Sunrise"
                         loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Mocktail</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🌅 Brief Definition</div>
-                        <p class="def-body">Orange juice, grenadine, and pineapple layered for a stunning sunrise
-                            effect. Sweet and non-alcoholic.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('320', this); event.stopPropagation();">Add
-                            to Bill - ETB 320</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Virgin Sunrise</div>
-                    <p class="card-desc">Orange juice, grenadine, pineapple — layered for a stunning gradient sunrise
+                    <p class="card-desc">Orange juice, grenadine, pineapple — layered for a stunning gradient
+                        sunrise
                         effect.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 320<span>Per Glass</span></div>
-                        <span class="card-tag">🌅 Non-alcoholic</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('320', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="mocktail">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1570696516188-ade861b84a49?w=500&q=80"
                         alt="Blue Lagoon Mocktail" loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Mocktail</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">💧 Brief Definition</div>
-                        <p class="def-body">Blue curaçao syrup, chilled lemonade, and a splash of lime. A visually
-                            striking, cooling oasis.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('300', this); event.stopPropagation();">Add
-                            to Bill - ETB 300</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Blue Lagoon</div>
@@ -1319,158 +1223,121 @@
                         look at.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 300<span>Per Glass</span></div>
-                        <span class="card-tag">💧 Non-alcoholic</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('300', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <!-- WINES & SPIRITS -->
             <div class="menu-card fade-in" data-cat="wine">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&q=80" alt="Red Wine"
                         loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Wine</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🍷 Brief Definition</div>
-                        <p class="def-body">Full-bodied Italian Merlot with rich plum and cherry notes. Smooth, velvety,
-                            and premium.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('750', this); event.stopPropagation();">Add
-                            to Bill - ETB 750</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Red Wine – Merlot</div>
-                    <p class="card-desc">Smooth full-bodied Italian Merlot, rich plum and cherry notes with a velvety
+                    <p class="card-desc">Smooth full-bodied Italian Merlot, rich plum and cherry notes with a
+                        velvety
                         finish.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 750<span>Per Glass</span></div>
-                        <span class="card-tag">🍷 Premium</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('750', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="wine">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=500&q=80"
                         alt="Premium Whiskey" loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Spirit</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🥃 Brief Definition</div>
-                        <p class="def-body">Aged single malt Scotch served over hand-cut ice. Bold, smoky, and refined
-                            for the connoisseur.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('980', this); event.stopPropagation();">Add
-                            to Bill - ETB 980</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Scotch Whisky On the Rocks</div>
-                    <p class="card-desc">Aged 12-year single malt Scotch whisky — served over large hand-cut ice cubes.
+                    <p class="card-desc">Aged 12-year single malt Scotch whisky — served over large hand-cut ice
+                        cubes.
                     </p>
                     <div class="card-footer">
                         <div class="card-price">ETB 980<span>Per Serving</span></div>
-                        <span class="card-tag">🥃 Aged</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('980', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <!-- COFFEE & TEA -->
             <div class="menu-card fade-in" data-cat="coffee">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=80"
                         alt="Ethiopian Coffee" loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Coffee</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">☕ Brief Definition</div>
-                        <p class="def-body">Authentic Habesha coffee ceremony. Rich, aromatic beans roasted on-site and
-                            served with popcorn.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('280', this); event.stopPropagation();">Add
-                            to Bill - ETB 280</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Ethiopian Ceremony Coffee</div>
-                    <p class="card-desc">Authentic Habesha coffee ceremony — roasted Ethiopian beans served with popcorn
+                    <p class="card-desc">Authentic Habesha coffee ceremony — roasted Ethiopian beans served with
+                        popcorn
                         & incense.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 280<span>Full Ceremony</span></div>
-                        <span class="card-tag">☕ Traditional</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('280', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="coffee">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80" alt="Cappuccino"
                         loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Coffee</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">☕ Brief Definition</div>
-                        <p class="def-body">Double-shot espresso with velvety steamed milk and thick microfoam art. Rich
-                            and creamy.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('180', this); event.stopPropagation();">Add
-                            to Bill - ETB 180</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Signature Cappuccino</div>
-                    <p class="card-desc">Double shot espresso with steamed whole milk, topped with thick microfoam art.
+                    <p class="card-desc">Double shot espresso with steamed whole milk, topped with thick microfoam
+                        art.
                     </p>
                     <div class="card-footer">
                         <div class="card-price">ETB 180<span>Per Cup</span></div>
-                        <span class="card-tag">☕ Creamy</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('180', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="coffee">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=80" alt="Matcha Latte"
                         loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Tea</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🍵 Brief Definition</div>
-                        <p class="def-body">Ceremonial grade Japanese matcha whisked with creamy oat milk and honey. A
-                            vibrant wellness choice.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('200', this); event.stopPropagation();">Add
-                            to Bill - ETB 200</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Premium Matcha Latte</div>
-                    <p class="card-desc">Ceremonial grade Japanese matcha whisked with oat milk, lightly sweetened with
+                    <p class="card-desc">Ceremonial grade Japanese matcha whisked with oat milk, lightly sweetened
+                        with
                         honey.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 200<span>Per Cup</span></div>
-                        <span class="card-tag">🍵 Wellness</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('200', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <!-- FRESH JUICES -->
             <div class="menu-card fade-in" data-cat="juice">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500&q=80" alt="Mango Juice"
                         loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Fresh Juice</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🥭 Brief Definition</div>
-                        <p class="def-body">Pure pressed Ethiopian mangoes. Naturally thick, sweet, and bursting with
-                            tropical sunshine.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('220', this); event.stopPropagation();">Add
-                            to Bill - ETB 220</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Fresh Mango Juice</div>
@@ -1478,25 +1345,18 @@
                         nourishing.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 220<span>Per Glass</span></div>
-                        <span class="card-tag">🥭 Fresh</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('220', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="juice">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=800&q=80"
                         alt="Avocado Juice" loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Fresh Juice</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🥑 Brief Definition</div>
-                        <p class="def-body">Creamy Ethiopian avocado blended with honey and lemon. A rich, nourishing,
-                            and local favorite.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('250', this); event.stopPropagation();">Add
-                            to Bill - ETB 250</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Avocado Juice</div>
@@ -1504,26 +1364,19 @@
                         favourite.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 250<span>Per Glass</span></div>
-                        <span class="card-tag">🥑 Creamy</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('250', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <!-- FOOD -->
             <div class="menu-card fade-in" data-cat="food">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1550507992-eb63ffee0847?w=600&q=80" alt="Club Sandwich"
                         loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Food</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🥪 Brief Definition</div>
-                        <p class="def-body">Triple-decker with grilled chicken, bacon, cheddar, and garlic mayo. A
-                            classic savory indulgence.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('580', this); event.stopPropagation();">Add
-                            to Bill - ETB 580</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Nexus Club Sandwich</div>
@@ -1531,25 +1384,18 @@
                         garlic mayo.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 580<span>Per Plate</span></div>
-                        <span class="card-tag">🥪 Savory</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('580', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="food">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&q=80" alt="Tibs"
                         loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Food</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🌶️ Brief Definition</div>
-                        <p class="def-body">Tender sautéed beef with bold Ethiopian spices and torn injera. An authentic
-                            cultural classic.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('650', this); event.stopPropagation();">Add
-                            to Bill - ETB 650</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Spicy Tibs Firfir</div>
@@ -1563,45 +1409,31 @@
             </div>
 
             <div class="menu-card fade-in" data-cat="food">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&q=80"
                         alt="Margherita Pizza" loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Food</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🍕 Brief Definition</div>
-                        <p class="def-body">Classic Napolitana dough with San Marzano tomato and fresh buffalo
-                            mozzarella. Wood-fired perfection.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('720', this); event.stopPropagation();">Add
-                            to Bill - ETB 720</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Wood-Fired Margherita Pizza</div>
-                    <p class="card-desc">Classic Napolitana dough, San Marzano tomato, fresh buffalo mozzarella, basil
+                    <p class="card-desc">Classic Napolitana dough, San Marzano tomato, fresh buffalo mozzarella,
+                        basil
                         and olive oil.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 720<span>Per Pizza</span></div>
-                        <span class="card-tag">🍕 Italian</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('720', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="food">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500&q=80"
                         alt="Caesar Salad" loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Food</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🥗 Brief Definition</div>
-                        <p class="def-body">Crisp romaine hearts, housemade Caesar dressing, and Parmesan shards. Light
-                            and iconic.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('420', this); event.stopPropagation();">Add
-                            to Bill - ETB 420</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Caesar Salad</div>
@@ -1609,33 +1441,28 @@
                         anchovies on request.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 420<span>Per Bowl</span></div>
-                        <span class="card-tag">🥗 Light</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('420', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
 
             <div class="menu-card fade-in" data-cat="food">
-                <div class="card-img-wrap" onclick="toggleDefinition(this)">
+                <div class="card-img-wrap">
                     <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&q=80"
                         alt="Chocolate Lava Cake" loading="lazy" />
                     <div class="card-img-overlay"></div>
                     <div class="card-badge">Dessert</div>
-                    <div class="brief-def-overlay">
-                        <div class="def-title">🍫 Brief Definition</div>
-                        <p class="def-body">Warm Belgian chocolate molten cake served with vanilla ice cream. The
-                            ultimate sweet indulgence.</p>
-                        <button class="add-to-order-btn" onclick="addToOrder('380', this); event.stopPropagation();">Add
-                            to Bill - ETB 380</button>
-                        <div class="click-hint">Click to close</div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-name">Chocolate Lava Cake</div>
-                    <p class="card-desc">Warm Belgian chocolate molten cake served with vanilla ice cream and raspberry
+                    <p class="card-desc">Warm Belgian chocolate molten cake served with vanilla ice cream and
+                        raspberry
                         coulis.</p>
                     <div class="card-footer">
                         <div class="card-price">ETB 380<span>Per Portion</span></div>
-                        <span class="card-tag">🍫 Indulgent</span>
+                        <button class="add-to-order-btn" onclick="addToOrder('380', this)" style="margin-top: 0;">Add to
+                            Bill</button>
                     </div>
                 </div>
             </div>
@@ -1879,10 +1706,7 @@
         let selectedItemsCount = 0;
         let orderItems = [];
 
-        function toggleDefinition(card) {
-            const overlay = card.querySelector('.brief-def-overlay');
-            overlay.classList.toggle('active');
-        }
+
 
         function addToOrder(priceStr, btn) {
             const price = parseInt(priceStr.replace(/[^0-9]/g, ''));
@@ -1989,28 +1813,11 @@
             document.getElementById('orderBar').classList.remove('active');
         }
 
-        // ── Move Add to Bill button for mobile layout
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.menu-card').forEach(card => {
-                const origBtn = card.querySelector('.add-to-order-btn');
-                const cardBody = card.querySelector('.card-body');
-                if (origBtn && cardBody) {
-                    const clonedBtn = origBtn.cloneNode(true);
-                    clonedBtn.classList.add('mobile-visible-btn');
-                    cardBody.appendChild(clonedBtn);
-                }
-            });
-        });
+
 
         // ── Add keyframe animation dynamically
         const style = document.createElement('style');
-        style.textContent = `@keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-        /* Make cloned buttons visible only on mobile */
-        .mobile-visible-btn { display: none; width: 100%; margin-top: 15px; }
-        @media (max-width: 768px) {
-            .mobile-visible-btn { display: block !important; }
-            .brief-def-overlay .add-to-order-btn { display: none !important; }
-        }`;
+        style.textContent = `@keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }`;
         document.head.appendChild(style);
     </script>
 </body>
