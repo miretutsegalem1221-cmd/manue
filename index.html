@@ -397,10 +397,13 @@
         }
 
         .card-price {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--gold);
-            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            border-bottom: 2px solid #e63946;
+            padding-bottom: 2px;
+            display: inline-block;
         }
 
         .card-price span {
@@ -409,6 +412,8 @@
             color: var(--text-muted);
             font-weight: 400;
             display: block;
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         .card-tag {
@@ -692,13 +697,16 @@
             background: var(--gold);
             color: var(--navy);
             border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
+            width: 90px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
             font-size: 0.75rem;
             font-weight: 700;
-            margin-top: 15px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s;
             text-transform: uppercase;
         }
 
@@ -931,6 +939,10 @@
             div[style*="display: flex"][style*="justify-content: center"][style*="gap: 20px"] button {
                 width: 48px !important;
                 height: 48px !important;
+            }
+
+            .sticky-header .custom-logo {
+                transform: scale(0.8) !important;
             }
         }
 
@@ -1489,7 +1501,7 @@
                         style="padding: 10px; margin-bottom: 12px; font-family: 'Times New Roman', Times, serif; color: #1a1a1a; background: white; text-align: left; border: 1px solid #eee; border-radius: 8px;">
 
                         <div
-                            style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-start;">
+                            style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end;">
                             <div style="flex: 1; padding-right: 15px;">
                                 <div style="font-weight: bold; font-size: 1.05rem; color: #1a1a1a;">Eggs Benedict</div>
                                 <div
@@ -1497,17 +1509,15 @@
                                     Poached eggs with Hollandaise & toast bread.</div>
                             </div>
                             <div
-                                style="text-align: right; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
-                                <div
-                                    style="font-family: 'Inter', sans-serif; font-weight: bold; font-size: 1.1rem; color: #1a1a1a; border-bottom: 2px solid #e63946; padding-bottom: 2px; display: inline-block;">
-                                    340.00</div>
-                                <button class="add-to-order-btn" onclick="addToOrder('340', this, 'Eggs Benedict')"
-                                    style="margin-top: 15px; padding: 4px 12px; font-size: 0.65rem;">+ Add</button>
+                                style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                                <div class="card-price">340.00</div>
+                                <button class="add-to-order-btn" onclick="addToOrder('340', this, 'Eggs Benedict')">+
+                                    Add</button>
                             </div>
                         </div>
 
                         <div
-                            style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-start;">
+                            style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end;">
                             <div style="flex: 1; padding-right: 15px;">
                                 <div style="font-weight: bold; font-size: 1.05rem; color: #1a1a1a;">Pan Cake</div>
                                 <div
@@ -1515,17 +1525,15 @@
                                     Plain pan cakes drizzle with strawberry coils & golden syrup.</div>
                             </div>
                             <div
-                                style="text-align: right; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
-                                <div
-                                    style="font-family: 'Inter', sans-serif; font-weight: bold; font-size: 1.1rem; color: #1a1a1a; border-bottom: 2px solid #e63946; padding-bottom: 2px; display: inline-block;">
-                                    300.00</div>
-                                <button class="add-to-order-btn" onclick="addToOrder('300', this, 'Pan Cake')"
-                                    style="margin-top: 15px; padding: 4px 12px; font-size: 0.65rem;">+ Add</button>
+                                style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                                <div class="card-price">300.00</div>
+                                <button class="add-to-order-btn" onclick="addToOrder('300', this, 'Pan Cake')">+
+                                    Add</button>
                             </div>
                         </div>
 
                         <div
-                            style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-start;">
+                            style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end;">
                             <div style="flex: 1; padding-right: 15px;">
                                 <div style="font-weight: bold; font-size: 1.05rem; color: #1a1a1a;">Scramble Eggs & Meat
                                 </div>
@@ -1534,18 +1542,15 @@
                                     Eggs, beef, tomato, onion, chili, breads, Injera and local butter.</div>
                             </div>
                             <div
-                                style="text-align: right; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
-                                <div
-                                    style="font-family: 'Inter', sans-serif; font-weight: bold; font-size: 1.1rem; color: #1a1a1a; border-bottom: 2px solid #e63946; padding-bottom: 2px; display: inline-block;">
-                                    790.00</div>
+                                style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                                <div class="card-price">790.00</div>
                                 <button class="add-to-order-btn"
-                                    onclick="addToOrder('790', this, 'Scramble Eggs & Meat')"
-                                    style="margin-top: 15px; padding: 4px 12px; font-size: 0.65rem;">+ Add</button>
+                                    onclick="addToOrder('790', this, 'Scramble Eggs & Meat')">+ Add</button>
                             </div>
                         </div>
 
                         <div
-                            style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-start;">
+                            style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end;">
                             <div style="flex: 1; padding-right: 15px;">
                                 <div style="font-weight: bold; font-size: 1.05rem; color: #1a1a1a;">Porridge</div>
                                 <div
@@ -1553,17 +1558,15 @@
                                     Simmered oats with milk.</div>
                             </div>
                             <div
-                                style="text-align: right; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
-                                <div
-                                    style="font-family: 'Inter', sans-serif; font-weight: bold; font-size: 1.1rem; color: #1a1a1a; border-bottom: 2px solid #e63946; padding-bottom: 2px; display: inline-block;">
-                                    480.00</div>
-                                <button class="add-to-order-btn" onclick="addToOrder('480', this, 'Porridge')"
-                                    style="margin-top: 15px; padding: 4px 12px; font-size: 0.65rem;">+ Add</button>
+                                style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                                <div class="card-price">480.00</div>
+                                <button class="add-to-order-btn" onclick="addToOrder('480', this, 'Porridge')">+
+                                    Add</button>
                             </div>
                         </div>
 
                         <div
-                            style="margin-bottom: 0px; display: flex; justify-content: space-between; align-items: flex-start;">
+                            style="margin-bottom: 0px; display: flex; justify-content: space-between; align-items: flex-end;">
                             <div style="flex: 1; padding-right: 15px;">
                                 <div style="font-weight: bold; font-size: 1.05rem; color: #1a1a1a;">Egg Sandwich</div>
                                 <div
@@ -1571,12 +1574,10 @@
                                     Fried Eggs, tomato, chili, bread and onion.</div>
                             </div>
                             <div
-                                style="text-align: right; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
-                                <div
-                                    style="font-family: 'Inter', sans-serif; font-weight: bold; font-size: 1.1rem; color: #1a1a1a; border-bottom: 2px solid #e63946; padding-bottom: 2px; display: inline-block;">
-                                    380.00</div>
-                                <button class="add-to-order-btn" onclick="addToOrder('380', this, 'Egg Sandwich')"
-                                    style="margin-top: 15px; padding: 4px 12px; font-size: 0.65rem;">+ Add</button>
+                                style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                                <div class="card-price">380.00</div>
+                                <button class="add-to-order-btn" onclick="addToOrder('380', this, 'Egg Sandwich')">+
+                                    Add</button>
                             </div>
                         </div>
                         <div
